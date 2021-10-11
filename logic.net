@@ -1,0 +1,11 @@
+.inputs 1 2 
+.outputs 7
+
+.circuit
+x1 or_2 5 6 7  
+x2 not 2 3
+x3 and_2 1 3 5
+x4 and_2 4 2 6
+x5 not 1 4
+
+.end circuit
