@@ -14,7 +14,7 @@ class InputNode():
 class WireNode():
     def __init__(self, wire_id):
         self.Id = wire_id
-        self.val = 0
+        self.val = 'x'
         self.next = []
     
     def add_next(self,nxt):
@@ -38,8 +38,8 @@ class GateNode():
         self.input2_wire = input2
         self.output_wire = output
         self.output_val = None
-        self.input1_val = 0
-        self.input2_val = 0
+        self.input1_val = 'x'
+        self.input2_val = 'x'
         self.type = type
 
     def calc(self, in_wire_id, in_val):
@@ -58,7 +58,6 @@ class GateNode():
             t = NOT()
             t.drive(self.input1_val)
             self.output_val = t.output
-        
-        # print('calc done on ', self.type, 'output wire id - ', self.output_wire.Id)
+        # print('calc done on ', self.type, 'output wire id - ', self.output_wire.Id, 'with inputs', self.input1_val, self.input2_val, 'output is', self.output_val)
         self.output_wire.drive(self.output_val)
         return

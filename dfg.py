@@ -56,11 +56,14 @@ def Simulate(Inputs, Outputs, CircuitVar, input_array, expected_output_array, ou
     with open(outputs_file_name, 'w') as output_file:
         output_file.write("INPUT            EXPECTED            ACTUAL\n\n")
         for idx1, input_state in enumerate(input_array):
-            input_vector = [int(char) for char in input_state]
-            expected_output_vector = [int(char) for char in expected_output_array[idx1]]
+            input_vector = [ 'x' if char=='x' else int(char) for char in input_state]
+            expected_output_vector = [ 'x' if char=='x' else int(char) for char in expected_output_array[idx1]]
             for idx2, input_node in enumerate(InputNodes):
                 input_node.drive(input_vector[idx2])
             
+            for key in Wires.keys():
+                print(Wires[key].Id, Wires[key].val)
+
             actual_output_vector = []
             actual_output_string = ""
             for idx3, output_id in enumerate(Outputs):
@@ -70,7 +73,7 @@ def Simulate(Inputs, Outputs, CircuitVar, input_array, expected_output_array, ou
             # print('expected output', expected_output_vector)
             # print('actual output', actual_output_vector)
          
-            # print("------------")
+            print("------------")
 
             output_file.write(input_state)
             output_file.write("         ")
@@ -86,5 +89,5 @@ def Simulate(Inputs, Outputs, CircuitVar, input_array, expected_output_array, ou
 
 
 
-   # for key in Wires.keys():
-            #     print(Wires[key].Id, Wires[key].val)
+#    for key in Wires.keys():
+#         print(Wires[key].Id, Wires[key].val)
